@@ -2,7 +2,9 @@ package com.team1389.operation;
 
 import com.team1389.hardware.controls.ControlBoard;
 import com.team1389.robot.RobotSoftware;
+import com.team1389.system.Subsystem;
 import com.team1389.system.SystemManager;
+import com.team1389.system.drive.CurvatureDriveSystem;
 
 public class TeleopMain {
 	SystemManager manager;
@@ -15,14 +17,15 @@ public class TeleopMain {
 
 	public void init() {
 		controls = ControlBoard.getInstance();
-		manager = new SystemManager();
+		manager = new SystemManager(getDrivetrain());
 		manager.init();
 	}
 
 
 	public void periodic() {
-
 		manager.update();
-
+	}
+	private Subsystem getDrivetrain(){
+		return new CurvatureDriveSystem(robot.voltageDrive, controls.xLeftDriveY(), controls.xLeftDriveX(), controls.xRightBumper());
 	}
 }

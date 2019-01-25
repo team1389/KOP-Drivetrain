@@ -1,5 +1,6 @@
 package com.team1389.robot;
 
+import com.team1389.hardware.registry.port_types.CAN;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -24,4 +25,20 @@ package com.team1389.robot;
 public class RobotMap {
 	
 
+    public static final CAN LEFT_DRIVE_ONE = new CAN(2);
+    public static final boolean inv_LEFT_DRIVE_ONE = false;
+    public static final boolean sinv_LEFT_DRIVE_ONE = false;
+    public static final CAN LEFT_DRIVE_TWO = new CAN(4);
+    public static final boolean inv_LEFT_DRIVE_TWO = false;
+    public static final boolean sinv_LEFT_DRIVE_TWO = false;
+
+
+    public static final CAN RIGHT_DRIVE_ONE = new CAN(1);
+    public static final boolean inv_RIGHT_DRIVE_ONE = true;
+    public static final boolean sinv_RIGHT_DRIVE_ONE = false;
+    public static final CAN RIGHT_DRIVE_TWO = new CAN(3);
+    public static final boolean inv_RIGHT_DRIVE_TWO = true;
+    public static final boolean sinv_RIGHT_DRIVE_TWO = false;
+
+    
 }

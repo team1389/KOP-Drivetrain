@@ -1,5 +1,6 @@
 package com.team1389.robot;
 
+import com.team1389.hardware.outputs.hardware.CANTalonHardware;
 import com.team1389.hardware.registry.Registry;
 
 /**
@@ -10,6 +11,7 @@ import com.team1389.hardware.registry.Registry;
  */
 public class RobotLayout extends RobotMap {
 	public Registry registry;
-
+	public CANTalonHardware leftDriveOne, leftDriveTwo;
+	public CANTalonHardware rightDriveOne, rightDriveTwo;
 
 }

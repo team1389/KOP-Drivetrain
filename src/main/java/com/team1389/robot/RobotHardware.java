@@ -1,5 +1,6 @@
 package com.team1389.robot;
 
+import com.team1389.hardware.outputs.hardware.CANTalonHardware;
 import com.team1389.hardware.registry.Registry;
 
 /**
@@ -22,7 +23,15 @@ public class RobotHardware extends RobotLayout
 	{
 		registry = new Registry();
 		System.out.println("initializing hardware");
-	
+		initDrivetrain();
+	}
+
+	private void initDrivetrain(){
+		leftDriveOne = new CANTalonHardware(inv_LEFT_DRIVE_ONE, LEFT_DRIVE_ONE, registry);
+		leftDriveTwo = new CANTalonHardware(inv_LEFT_DRIVE_TWO, LEFT_DRIVE_TWO, registry);
+
+		rightDriveOne = new CANTalonHardware(inv_RIGHT_DRIVE_ONE, RIGHT_DRIVE_ONE, registry);
+		rightDriveTwo = new CANTalonHardware(inv_RIGHT_DRIVE_TWO, RIGHT_DRIVE_TWO, registry);
 	}
 
 
