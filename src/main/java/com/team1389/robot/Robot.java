@@ -6,14 +6,12 @@ import com.team1389.hardware.outputs.software.RangeOut;
 import com.team1389.hardware.value_types.Percent;
 import com.team1389.hardware.value_types.Position;
 import com.team1389.operation.TeleopMain;
-import com.team1389.system.SystemManager;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer.Range;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,7 +25,7 @@ public class Robot extends TimedRobot {
 	RobotSoftware robot;
 	TeleopMain teleOperator;
 	Solenoid light = new Solenoid(1);
-	private final int center = 360;
+	private final int center = 320;
 	SynchronousPIDController<Percent, Position> pidController;
 
 
@@ -43,7 +41,7 @@ public class Robot extends TimedRobot {
 		robot = RobotSoftware.getInstance();
 		teleOperator = new TeleopMain(robot);
 		light.set(true);
-		RangeIn<Position> diff = new RangeIn<Position>(Position.class, () -> xEntry.getDouble(center) - center, -2000, 2000);
+		RangeIn<Position> diff = new RangeIn<Position>(Position.class, () -> xEntry.getDouble(center) - center, 0, 640);
 		RangeOut<Percent> driveTrain = robot.leftDriveOneVolt.getWithAddedFollowers(robot.leftDriveTwoVolt).
 			getWithAddedFollowers(robot.rightDriveOneVolt).getWithAddedFollowers(robot.rightDriveTwoVolt);
 		pidController = new SynchronousPIDController<>(0.001, 0, 0, 0, diff, driveTrain);
