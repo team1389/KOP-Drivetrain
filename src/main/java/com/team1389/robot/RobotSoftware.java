@@ -25,7 +25,7 @@ public class RobotSoftware extends RobotHardware {
 		rightDriveOneVolt = rightDriveOne.getVoltageController();
 		rightDriveTwoVolt = rightDriveTwo.getVoltageController();
 
-		voltageDrive = new DriveOut<>(leftDriveOneVolt.addFollowers(leftDriveTwoVolt), rightDriveOneVolt.addFollowers(rightDriveTwoVolt));
+		voltageDrive = new DriveOut<>(leftDriveOneVolt.getWithAddedFollowers(leftDriveTwoVolt), rightDriveOneVolt.getWithAddedFollowers(rightDriveTwoVolt));
 	}
 	
 
