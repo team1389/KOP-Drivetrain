@@ -22,8 +22,8 @@ import com.team1389.hardware.registry.port_types.CAN;
  * <em>inv_ASSOCIATED_IO_IDENTIFIER</em> for outputs and
  * <em>sinv_ASSOCIATED_IO_IDENTIFIER</em> for inputs.
  */
-public class RobotMap {
-	
+public class RobotMap
+{
 
     public static final CAN LEFT_DRIVE_ONE = new CAN(2);
     public static final boolean inv_LEFT_DRIVE_ONE = false;
@@ -32,7 +32,6 @@ public class RobotMap {
     public static final boolean inv_LEFT_DRIVE_TWO = false;
     public static final boolean sinv_LEFT_DRIVE_TWO = false;
 
-
     public static final CAN RIGHT_DRIVE_ONE = new CAN(1);
     public static final boolean inv_RIGHT_DRIVE_ONE = true;
     public static final boolean sinv_RIGHT_DRIVE_ONE = false;
@@ -40,5 +39,7 @@ public class RobotMap {
     public static final boolean inv_RIGHT_DRIVE_TWO = true;
     public static final boolean sinv_RIGHT_DRIVE_TWO = false;
 
-    
+    // imu
+    public static final CAN IMU_PORT = new CAN(7);
+
 }
