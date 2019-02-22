@@ -1,5 +1,6 @@
 package com.team1389.robot;
 
+import com.team1389.hardware.registry.port_types.Analog;
 import com.team1389.hardware.registry.port_types.CAN;
 
 /**
@@ -41,5 +42,8 @@ public class RobotMap
 
     // imu
     public static final CAN IMU_PORT = new CAN(7);
+
+    // sensors
+    public static final Analog LEFT_DISTANCE_SENSOR = new Analog(0);
 
 }

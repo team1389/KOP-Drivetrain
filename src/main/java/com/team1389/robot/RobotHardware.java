@@ -1,6 +1,8 @@
 package com.team1389.robot;
 
+import com.team1389.hardware.inputs.hardware.AnalogDistanceHardware;
 import com.team1389.hardware.inputs.hardware.PigeonIMUHardware;
+import com.team1389.hardware.inputs.hardware.AnalogDistanceHardware.SensorType;
 import com.team1389.hardware.outputs.hardware.CANTalonHardware;
 import com.team1389.hardware.registry.Registry;
 
@@ -26,6 +28,7 @@ public class RobotHardware extends RobotLayout
 		System.out.println("initializing hardware");
 		initDrivetrain();
 		imu = new PigeonIMUHardware(IMU_PORT, registry);
+		leftDistance = new AnalogDistanceHardware(SensorType.SHARP_GP2Y0A21YK0F, LEFT_DISTANCE_SENSOR, registry);
 	}
 
 	private void initDrivetrain()

@@ -34,6 +34,7 @@ public class Robot extends TimedRobot
 		teleOperator = new TeleopMain(robot);
 		watch = new Watcher();
 		watch.watch(robot.gyroInput.getWatchable("angle"));
+		watch.watch(robot.leftDistanceInput.getWatchable("left dist"));
 		watch.outputToDashboard();
 		turnController = TurnAngleCommand.createTurnController(robot.voltageDrive);
 
@@ -62,8 +63,7 @@ public class Robot extends TimedRobot
 	public void teleopPeriodic()
 	{
 		Watcher.update();
-		turnController.set(.3);
-		// teleOperator.periodic();
+		teleOperator.periodic();
 	}
 
 	@Override
