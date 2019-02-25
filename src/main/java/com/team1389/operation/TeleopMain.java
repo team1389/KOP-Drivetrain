@@ -26,12 +26,13 @@ public class TeleopMain
 
 	public void periodic()
 	{
+
 		manager.update();
 	}
 
 	private Subsystem getDrivetrain()
 	{
-		return new CurvatureDriveSystem(robot.voltageDrive, controls.driveLeftY(), controls.driveLeftX(),
+		return new CurvatureDriveSystem(robot.voltageDrive, controls.driveLeftY(), controls.driveRightX(),
 				controls.driveRightBumper());
 	}
 }

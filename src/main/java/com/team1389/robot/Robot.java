@@ -1,6 +1,8 @@
 package com.team1389.robot;
 
 import com.team1389.auto.command.TurnAngleCommand;
+import com.team1389.autonomous.AutoCommands;
+import com.team1389.command_framework.CommandScheduler;
 import com.team1389.hardware.outputs.software.RangeOut;
 import com.team1389.operation.TeleopMain;
 import com.team1389.system.SystemManager;
@@ -21,6 +23,8 @@ public class Robot extends TimedRobot
 	TeleopMain teleOperator;
 	Watcher watch;
 	RangeOut turnController;
+	AutoCommands autoCommands;
+	CommandScheduler scheduler;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -31,29 +35,36 @@ public class Robot extends TimedRobot
 	{
 
 		robot = RobotSoftware.getInstance();
+		robot.zeroRobotAngle();
 		teleOperator = new TeleopMain(robot);
 		watch = new Watcher();
-		watch.watch(robot.gyroInput.getWatchable("angle"));
 		watch.watch(robot.leftDistanceInput.getWatchable("left dist"));
+		watch.watch(robot.gyroInput.getWatchable("angle"));
 		watch.outputToDashboard();
 		turnController = TurnAngleCommand.createTurnController(robot.voltageDrive);
+		autoCommands = new AutoCommands(robot);
+		scheduler = new CommandScheduler();
 
 	}
 
 	@Override
 	public void autonomousInit()
 	{
+		scheduler.schedule(autoCommands.new TurnTo180AbsoluteCommand());
 	}
 
 	@Override
 	public void autonomousPeriodic()
 	{
+		scheduler.update();
+		// clockwise
 	}
 
 	@Override
 	public void teleopInit()
 	{
 		teleOperator.init();
+		robot.zeroRobotAngle();
 	}
 
 	/**
@@ -63,6 +74,7 @@ public class Robot extends TimedRobot
 	public void teleopPeriodic()
 	{
 		Watcher.update();
+
 		teleOperator.periodic();
 	}
 

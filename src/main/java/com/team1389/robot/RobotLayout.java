@@ -1,6 +1,7 @@
 package com.team1389.robot;
 
 import com.team1389.hardware.inputs.hardware.AnalogDistanceHardware;
+import com.team1389.hardware.inputs.hardware.NavXHardware;
 import com.team1389.hardware.inputs.hardware.PigeonIMUHardware;
 import com.team1389.hardware.outputs.hardware.CANTalonHardware;
 import com.team1389.hardware.registry.Registry;
@@ -16,6 +17,6 @@ public class RobotLayout extends RobotMap
 	public Registry registry;
 	public CANTalonHardware leftDriveOne, leftDriveTwo;
 	public CANTalonHardware rightDriveOne, rightDriveTwo;
-	public PigeonIMUHardware imu;
 	public AnalogDistanceHardware leftDistance;
+	public NavXHardware gyro;
 }

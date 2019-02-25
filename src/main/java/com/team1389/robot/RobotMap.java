@@ -2,6 +2,9 @@ package com.team1389.robot;
 
 import com.team1389.hardware.registry.port_types.Analog;
 import com.team1389.hardware.registry.port_types.CAN;
+import com.team1389.hardware.registry.port_types.SPIPort;
+
+import edu.wpi.first.wpilibj.SPI.Port;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -41,8 +44,7 @@ public class RobotMap
     public static final boolean sinv_RIGHT_DRIVE_TWO = false;
 
     // imu
-    public static final CAN IMU_PORT = new CAN(7);
-
+    public SPIPort GYRO_PORT = new SPIPort(Port.kMXP);
     // sensors
     public static final Analog LEFT_DISTANCE_SENSOR = new Analog(0);
 

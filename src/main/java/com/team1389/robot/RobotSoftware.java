@@ -9,6 +9,7 @@ import com.team1389.hardware.outputs.software.PercentOut;
 import com.team1389.hardware.outputs.software.RangeOut;
 import com.team1389.hardware.value_types.Position;
 import com.team1389.system.drive.DriveOut;
+import com.team1389.watch.Watcher;
 
 public class RobotSoftware extends RobotHardware
 {
@@ -52,7 +53,7 @@ public class RobotSoftware extends RobotHardware
 
 	private void initGyro()
 	{
-		gyroInput = imu.getYawInput().getInverted().getWithSetRange(0, 360).getWrapped();
+		gyroInput = gyro.getYawInput().getWrapped();
 		zeroRobotAngle();
 	}
 
@@ -66,11 +67,7 @@ public class RobotSoftware extends RobotHardware
 	public void zeroRobotAngle()
 	{
 		double offset = -gyroInput.get();
-		double origMin = gyroInput.min();
-		double origMax = gyroInput.max();
-		double newMin = origMin + offset;
-		double newMax = origMax + offset;
-		gyroInput = (AngleIn<Position>) gyroInput.getOffset(offset).getWithSetRange(newMin, newMax);
+		gyroInput.clone(gyroInput.getOffset(offset));
 	}
 
 }
