@@ -36,4 +36,18 @@ public class AutoCommands
         }
 
     }
+
+    public class TurnTo90AbsoluteCommand extends TurnAngleCommand<Percent>
+    {
+        RangeOut<Percent> turnController;
+        TurnAngleCommand<Percent> turn180;
+
+        public TurnTo90AbsoluteCommand()
+        {
+            super(90, true, TOLERANCE_IN_DEGREES, robot.gyroInput,
+                    TurnAngleCommand.createTurnController(robot.voltageDrive), TURN_PID_CONSTANTS);
+
+        }
+
+    }
 }

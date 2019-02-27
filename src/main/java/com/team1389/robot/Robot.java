@@ -63,6 +63,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void teleopInit()
 	{
+		System.out.println("running");
 		teleOperator.init();
 		robot.zeroRobotAngle();
 	}
@@ -79,7 +80,18 @@ public class Robot extends TimedRobot
 	}
 
 	@Override
+	public void testInit()
+	{
+		scheduler.schedule(autoCommands.new TurnTo90AbsoluteCommand());
+	}
 
+	@Override
+	public void testPeriodic()
+	{
+		scheduler.update();
+	}
+
+	@Override
 	public void disabledInit()
 	{
 	}

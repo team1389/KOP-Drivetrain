@@ -67,7 +67,7 @@ public class RobotSoftware extends RobotHardware
 	public void zeroRobotAngle()
 	{
 		double offset = -gyroInput.get();
-		gyroInput.clone(gyroInput.getOffset(offset));
+		gyroInput.clone(gyroInput.getOffset(offset).getWithSetRange(0, 360).getWrapped());
 	}
 
 }
