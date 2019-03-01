@@ -53,7 +53,8 @@ public class RobotSoftware extends RobotHardware
 
 	private void initGyro()
 	{
-		gyroInput = gyro.getYawInput().getWrapped();
+		// has to be this range to avoid weird issues with going for 0
+		gyroInput = gyro.getYawInput().getWithSetRange(-90, 270).getWrapped();
 		zeroRobotAngle();
 	}
 
@@ -67,7 +68,7 @@ public class RobotSoftware extends RobotHardware
 	public void zeroRobotAngle()
 	{
 		double offset = -gyroInput.get();
-		gyroInput.clone(gyroInput.getOffset(offset).getWithSetRange(0, 360).getWrapped());
+		gyroInput.clone(gyroInput.getOffset(offset).getWithSetRange(-90, 270).getWrapped());
 	}
 
 }

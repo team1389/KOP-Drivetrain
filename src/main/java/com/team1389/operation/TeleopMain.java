@@ -5,6 +5,8 @@ import com.team1389.robot.RobotSoftware;
 import com.team1389.system.Subsystem;
 import com.team1389.system.SystemManager;
 import com.team1389.system.drive.CurvatureDriveSystem;
+import com.team1389.system.drive.DriveOut;
+import com.team1389.systems.TeleopAlignmentSystem;
 
 public class TeleopMain
 {
@@ -20,7 +22,8 @@ public class TeleopMain
 	public void init()
 	{
 		controls = ControlBoard.getInstance();
-		manager = new SystemManager(getDrivetrain());
+		Subsystem align = getAlignSystem();
+		manager = new SystemManager(align);
 		manager.init();
 	}
 
@@ -34,5 +37,12 @@ public class TeleopMain
 	{
 		return new CurvatureDriveSystem(robot.voltageDrive, controls.driveLeftY(), controls.driveRightX(),
 				controls.driveRightBumper());
+	}
+
+	private Subsystem getAlignSystem()
+	{
+		DriveOut newDrive = new DriveOut<>(robot.voltageDrive.left().getLimited(0.5),
+				robot.voltageDrive.right().getLimited(0.5));
+		return new TeleopAlignmentSystem(newDrive, null, null, robot.gyroInput, controls.aButton(), controls.bButton());
 	}
 }

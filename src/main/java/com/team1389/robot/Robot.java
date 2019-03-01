@@ -50,7 +50,6 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit()
 	{
-		scheduler.schedule(autoCommands.new TurnTo180AbsoluteCommand());
 	}
 
 	@Override
@@ -65,7 +64,6 @@ public class Robot extends TimedRobot
 	{
 		System.out.println("running");
 		teleOperator.init();
-		robot.zeroRobotAngle();
 	}
 
 	/**
@@ -82,13 +80,11 @@ public class Robot extends TimedRobot
 	@Override
 	public void testInit()
 	{
-		scheduler.schedule(autoCommands.new TurnTo90AbsoluteCommand());
 	}
 
 	@Override
 	public void testPeriodic()
 	{
-		scheduler.update();
 	}
 
 	@Override

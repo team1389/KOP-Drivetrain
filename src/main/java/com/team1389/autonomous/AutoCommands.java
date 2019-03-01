@@ -14,7 +14,7 @@ public class AutoCommands
 
     private RobotSoftware robot;
 
-    private final double TOLERANCE_IN_DEGREES = 1;
+    private final double TOLERANCE_IN_DEGREES = 20;
     private final PIDConstants TURN_PID_CONSTANTS = new PIDConstants(0.05, 0, 0);
 
     public AutoCommands(RobotSoftware robot)

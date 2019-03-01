@@ -144,7 +144,7 @@ public class AlignmentSystem extends Subsystem
 
         SynchronousPIDController<Percent, Position> pidController = new SynchronousPIDController<Percent, Position>(
                 new PIDConstants(0.01, 0, 0), xValSupplier, drive.left().getWithAddedFollowers(drive.right()));
-        scheduler.schedule(pidController.getPIDToCommand(0, VISION_ALIGNMENT_TOLERANCE));
+        scheduler.schedule(pidController.getPIDToCommand(320, VISION_ALIGNMENT_TOLERANCE));
     }
 
     public void alignAngle()
@@ -160,7 +160,7 @@ public class AlignmentSystem extends Subsystem
                 turnController);
         double startingAngle = robotAngle.get();
         double targetAngle;
-        if (startingAngle < 90 || startingAngle > 270)
+        if (startingAngle < 90 && startingAngle > -90)
         {
             targetAngle = 0;
         }
