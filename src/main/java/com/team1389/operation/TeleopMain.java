@@ -41,8 +41,8 @@ public class TeleopMain
 
 	private Subsystem getAlignSystem()
 	{
-		DriveOut newDrive = new DriveOut<>(robot.voltageDrive.left().getLimited(0.5),
-				robot.voltageDrive.right().getLimited(0.5));
+		DriveOut newDrive = new DriveOut<>(robot.voltageDrive.left().getLimited(0.2),
+				robot.voltageDrive.right().getLimited(0.2));
 		return new TeleopAlignmentSystem(newDrive, null, null, robot.gyroInput, controls.aButton(), controls.bButton());
 	}
 }

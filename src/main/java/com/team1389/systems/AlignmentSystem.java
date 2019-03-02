@@ -80,7 +80,7 @@ public class AlignmentSystem extends Subsystem
         rightSideXEntry = table.getEntry(VISION_RIGHT_SIDE_X_ID);
         toggleRunningSideEntry = table.getEntry(VISION_TOGGLE_RUNNING_SIDE_ID);
         // note this is the side of vision that runs on startup
-        currentState = Side.LEFT;
+        currentState = Side.RIGHT;
     }
 
     @Override
@@ -143,7 +143,8 @@ public class AlignmentSystem extends Subsystem
         }
 
         SynchronousPIDController<Percent, Position> pidController = new SynchronousPIDController<Percent, Position>(
-                new PIDConstants(0.01, 0, 0), xValSupplier, drive.left().getWithAddedFollowers(drive.right()));
+                new PIDConstants(0.005, 0, 0.5), xValSupplier, drive.left().getWithAddedFollowers(drive.right()));
+        System.out.println("running center thing");
         scheduler.schedule(pidController.getPIDToCommand(320, VISION_ALIGNMENT_TOLERANCE));
     }
 
