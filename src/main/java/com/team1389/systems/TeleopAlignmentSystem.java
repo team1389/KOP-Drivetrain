@@ -26,6 +26,8 @@ public class TeleopAlignmentSystem extends Subsystem
 {
     DigitalIn alignBtn;
     DigitalIn centerBtn;
+    DigitalIn leftBtn;
+    DigitalIn rightBtn;
     AlignmentSystem align;
 
     /*
@@ -34,10 +36,13 @@ public class TeleopAlignmentSystem extends Subsystem
      * robotAngle)
      */
     public TeleopAlignmentSystem(DriveOut<Percent> drive, RangeIn<Position> leftDistance,
-            RangeIn<Position> rightDistance, RangeIn<Position> robotAngle, DigitalIn alignBtn, DigitalIn centerBtn)
+            RangeIn<Position> rightDistance, RangeIn<Position> robotAngle, DigitalIn alignBtn, DigitalIn centerBtn,
+            DigitalIn leftBtn, DigitalIn rightBtn)
     {
         this.alignBtn = alignBtn;
         this.centerBtn = centerBtn;
+        this.leftBtn = leftBtn;
+        this.rightBtn = rightBtn;
         align = new AlignmentSystem(drive, leftDistance, rightDistance, robotAngle);
         align.init();
     }
@@ -51,13 +56,24 @@ public class TeleopAlignmentSystem extends Subsystem
     @Override
     public void update()
     {
-        if (alignBtn.get())
+        // if (alignBtn.get())
+        // {
+        // align.alignAngle();
+        // }
+        // else if (centerBtn.get())
+        // {
+        // align.centerOnTarget();
+        // }
+        // align.update();
+        if (leftBtn.get())
         {
-            align.alignAngle();
+            System.out.println("left");
+            align.setSide(AlignmentSystem.Side.LEFT);
         }
-        else if (centerBtn.get())
+        else if (rightBtn.get())
         {
-            align.centerOnTarget();
+            System.out.println("right");
+            align.setSide(AlignmentSystem.Side.RIGHT);
         }
         align.update();
     }

@@ -1,6 +1,7 @@
 package com.team1389.systems;
 
 import com.team1389.auto.command.TurnAngleCommand;
+import com.team1389.auto.command.WaitTimeCommand;
 import com.team1389.command_framework.CommandUtil;
 import com.team1389.command_framework.command_base.Command;
 import com.team1389.configuration.PIDConstants;
@@ -80,7 +81,7 @@ public class AlignmentSystem extends Subsystem
         rightSideXEntry = table.getEntry(VISION_RIGHT_SIDE_X_ID);
         toggleRunningSideEntry = table.getEntry(VISION_TOGGLE_RUNNING_SIDE_ID);
         // note this is the side of vision that runs on startup
-        currentState = Side.RIGHT;
+        currentState = Side.LEFT;
     }
 
     @Override
@@ -101,7 +102,7 @@ public class AlignmentSystem extends Subsystem
         return stem;
     }
 
-    private enum Side
+    public enum Side
     {
         LEFT, RIGHT
     }
@@ -111,7 +112,7 @@ public class AlignmentSystem extends Subsystem
     // TODO: look into some way of shaking hands with pi regarding changedState.
     // Would make this command, only let next thing run after we get the
     // handshake.
-    private void setSide(Side desired)
+    public void setSide(Side desired)
     {
         if (currentState != desired)
         {
@@ -127,6 +128,8 @@ public class AlignmentSystem extends Subsystem
             // switching once he fixes it.
             toggleRunningSideEntry.setBoolean(true);
         }
+        scheduler.schedule(CommandUtil.combineSequential(new WaitTimeCommand(.5),
+                CommandUtil.createCommand(() -> toggleRunningSideEntry.setBoolean(false))));
     }
 
     public void centerOnTarget()
