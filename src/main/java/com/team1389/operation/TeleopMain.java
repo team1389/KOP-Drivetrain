@@ -26,6 +26,6 @@ public class TeleopMain {
 		manager.update();
 	}
 	private Subsystem getDrivetrain(){
-		return new CurvatureDriveSystem(robot.voltageDrive, controls.xLeftDriveY(), controls.xRightDriveX(), controls.xRightBumper());
+		return new CurvatureDriveSystem(robot.voltageDrive, controls.driveLeftY(), controls.driveRightX(), controls.driveRightBumper());
 	}
 }
