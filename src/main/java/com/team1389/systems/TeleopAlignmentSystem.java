@@ -56,16 +56,15 @@ public class TeleopAlignmentSystem extends Subsystem
     @Override
     public void update()
     {
-        // if (alignBtn.get())
-        // {
-        // align.alignAngle();
-        // }
-        // else if (centerBtn.get())
-        // {
-        // align.centerOnTarget();
-        // }
-        // align.update();
-        if (leftBtn.get())
+        if (alignBtn.get())
+        {
+            align.alignAngle();
+        }
+        else if (centerBtn.get())
+        {
+            align.centerOnTarget();
+        }
+        else if (leftBtn.get())
         {
             System.out.println("left");
             align.setSide(AlignmentSystem.Side.LEFT);

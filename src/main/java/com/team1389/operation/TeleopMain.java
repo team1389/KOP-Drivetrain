@@ -22,8 +22,9 @@ public class TeleopMain
 	public void init()
 	{
 		controls = ControlBoard.getInstance();
+		Subsystem drive = getDrivetrain();
 		Subsystem align = getAlignSystem();
-		manager = new SystemManager(align);
+		manager = new SystemManager(align, drive);
 		manager.init();
 	}
 
@@ -41,9 +42,8 @@ public class TeleopMain
 
 	private Subsystem getAlignSystem()
 	{
-		DriveOut newDrive = new DriveOut<>(robot.voltageDrive.left().getLimited(0.2),
-				robot.voltageDrive.right().getLimited(0.2));
-		return new TeleopAlignmentSystem(null, null, null, robot.gyroInput, controls.aButton(), controls.bButton(),
-				controls.leftDPad(), controls.rightDPad());
+
+		return new TeleopAlignmentSystem(robot.voltageDrive, null, null, robot.gyroInput, controls.aButton(),
+				controls.bButton(), controls.leftDPad(), controls.rightDPad());
 	}
 }
