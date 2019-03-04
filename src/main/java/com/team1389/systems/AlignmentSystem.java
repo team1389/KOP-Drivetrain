@@ -41,14 +41,13 @@ public class AlignmentSystem extends Subsystem
     private final int CENTER_X_VAL = 320;
 
     private DriveOut drive;
-    private DriveOut scaledDownDrive;
 
     private RangeIn<Position> leftDistance;
     private RangeIn<Position> rightDistance;
     private RangeIn<Position> robotAngle;
 
-    private final double VISION_ALIGNMENT_TOLERANCE = 20;
-    private final PIDConstants VISION_ALIGN_PID_CONSTANTS = new PIDConstants(0.01, 0, 0);
+    private final double VISION_ALIGNMENT_TOLERANCE = 50;
+    //private final PIDConstants VISION_ALIGN_PID_CONSTANTS = new PIDConstants(0.01, 0, 0);
 
     private final double TURN_TOLERANCE_IN_DEGREES = 5;
     private final double STARTING_ANGLE_IN_DEGREES = 0;
@@ -79,8 +78,7 @@ public class AlignmentSystem extends Subsystem
     @Override
     public void init()
     {
-        scaledDownDrive = new DriveOut<>(drive.left().getLimited(0.3), rive.right().getLimited(0.3));
-                NetworkTable table = NetworkTableInstance.getDefault().getTable(VISION_NETWORK_TABLE_ID);
+        NetworkTable table = NetworkTableInstance.getDefault().getTable(VISION_NETWORK_TABLE_ID);
         leftSideXEntry = table.getEntry(VISION_LEFT_SIDE_X_ID);
         rightSideXEntry = table.getEntry(VISION_RIGHT_SIDE_X_ID);
         toggleRunningSideEntry = table.getEntry(VISION_TOGGLE_RUNNING_SIDE_ID);
@@ -148,7 +146,7 @@ public class AlignmentSystem extends Subsystem
         }
 
         SynchronousPIDController<Percent, Position> pidController = new SynchronousPIDController<Percent, Position>(
-                new PIDConstants(0.008, 0, 0.5), xValSupplier, scaledDownDrive.left().getWithAddedFollowers(scaledDownDrive.right()));
+                new PIDConstants(0.008, 0, 0.5), xValSupplier, drive.left().getWithAddedFollowers(drive.right()));
         Watcher watch = new Watcher(new NumberInfo("error", () -> pidController.getError()));
         watch.outputToDashboard();
         System.out.println("running center thing");
