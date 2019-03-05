@@ -175,6 +175,12 @@ public class AlignmentSystem extends Subsystem
             targetAngle = 180;
         }
         scheduler.schedule(pidController.getPIDToCommand(targetAngle, TURN_TOLERANCE_IN_DEGREES));
+    }
 
+    public void fullAlign()
+    {
+        scheduler.cancelAll();
+        alignAngle();
+        centerOnTarget();   
     }
 }

@@ -44,6 +44,6 @@ public class TeleopMain
 	{
 
 		return new TeleopAlignmentSystem(robot.voltageDrive, null, null, robot.gyroInput, controls.aButton(),
-				controls.bButton(), controls.leftDPad(), controls.rightDPad());
+				controls.bButton(), controls.xButton(), controls.leftDPad(), controls.rightDPad());
 	}
 }
