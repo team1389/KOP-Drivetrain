@@ -1,13 +1,10 @@
 package com.team1389.autonomous;
 
 import com.team1389.auto.command.TurnAngleCommand;
-import com.team1389.command_framework.command_base.Command;
 import com.team1389.configuration.PIDConstants;
 import com.team1389.hardware.outputs.software.RangeOut;
 import com.team1389.hardware.value_types.Percent;
 import com.team1389.robot.RobotSoftware;
-
-import edu.wpi.first.wpilibj.interfaces.Accelerometer.Range;
 
 public class AutoCommands
 {

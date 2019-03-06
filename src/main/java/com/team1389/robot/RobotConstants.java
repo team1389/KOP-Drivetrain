@@ -1,8 +1,10 @@
 package com.team1389.robot;
 
+import com.team1389.configuration.PIDConstants;
+
 /**
- * Constants for the Robot.
- * All units are standard metric units
+ * Constants for the Robot. All units are standard metric units
+ * 
  * @author Raffi
  *
  */
@@ -39,6 +41,11 @@ public class RobotConstants {
 	 */
 	public static final double GyroCorrection = 0.05;
 
+	public static final double TURN_SENSITIVITY = 1;
+    public static final double SPIN_SENSITIVITY = .5;
+    public static final PIDConstants LATERAL_PID_CONSTANTS = new PIDConstants(0, 0, 0, 0);
+	public static final PIDConstants LONGITUDINAL_PID_CONSTANTS = new PIDConstants(0, 0, 0, 0);
+	
 	public static double feetToMeters(double ft)
 	{
 		return ft * 0.3048;

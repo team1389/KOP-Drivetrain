@@ -24,7 +24,7 @@ public class TeleopMain
 		controls = ControlBoard.getInstance();
 		Subsystem drive = getDrivetrain();
 		Subsystem align = getAlignSystem();
-		manager = new SystemManager(align, drive);
+		manager = new SystemManager(align);
 		manager.init();
 	}
 
